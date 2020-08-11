@@ -72,8 +72,16 @@ longer anonymous, but has a meaningful name name."
 (defun excl:match-regexp (pattern string &key (return :string))
   (excl:match-re pattern string :return return))
 
+(defun excl:path-pathname (path)
+  #+sbcl
+  (directory-namestring path))
+
 (defun excl:compile-regexp (pattern)
   (create-scanner pattern))
+
+(defun excl::cl-internal-real-time ()
+  #+sbcl
+  (get-internal-real-time))
 
 
 (defmacro excl:with-output-to-buffer ((stream) &body body)

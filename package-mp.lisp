@@ -75,6 +75,10 @@
   (:method (process)
     (run-reasons process)))
 
+(defgeneric mp:process-active-p (process)
+  (:method (process)
+    (active-p process)))
+
 
 ;;; Queues
 

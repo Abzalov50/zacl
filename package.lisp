@@ -222,6 +222,7 @@
            #:lockable-object)
   (:export #:match-regexp
            #:match-re
+	   #:path-pathname
            #:replace-regexp
            #:compile-regexp)
   (:export #:with-output-to-buffer
@@ -361,6 +362,7 @@ package name.
            #:process-reset
            #:process-allow-schedule
            #:process-kill
+	   #:process-active-p
            #:process-run-function
            #:process-keeps-lisp-alive-p
            #:process-preset

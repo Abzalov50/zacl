@@ -19,6 +19,7 @@
 
 (defgeneric enable (process))
 (defgeneric kill (process))
+(defgeneric active-p (process))
 (defgeneric preset (process fun &rest args))
 (defgeneric yield (process))
 
@@ -138,6 +139,11 @@
                       (lambda () (throw 'killed nil))))
   (remove-from-all-processes process)
   process)
+
+(defmethod active-p ((process process))
+  (when (thread process)
+    #+sbcl
+    (sb-thread:thread-alive-p (thread process))))
 
 (defmethod preset ((process process) fun &rest args)
   (setf (initial-function process) fun)
